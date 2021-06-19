@@ -1,11 +1,10 @@
 Package: earlyTemplates
 Type: Package
-Title: What the Package Does (Title Case)
-Version: 0.1.0
-Author: Who wrote it
-Maintainer: The package maintainer <yourself@somewhere.net>
-Description: More about what it does (maybe more than one line)
-    Use four spaces when indenting paragraphs within the Description.
-License: What license is it under?
+Title: A package of rmarkdown templates
+Version: 0.0.09
+Author: Brian V. Rusk
+Maintainer: Brian V. Rusk <brian.rusk@gmail.com>
+Description: This is a package of rmarkdown templates based on LaTeX. The package is both a learning project with an increasing number of templates and template complexity. Work will be extensively borrowed from others.
+License:  CC BY 4.0 Attribution 4.0 International 
 Encoding: UTF-8
 LazyData: true
