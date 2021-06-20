@@ -1,35 +1,149 @@
-\documentclass[11pt]{letter}
+\documentclass[$if(fontsize)$$fontsize$$else$11pt$endif$,letterpaper,$for(classoption)$$classoption$$sep$,$endfor$]{article}
 
-$if(signature)$
-\signature{$signature$}
-$endif$
+% Define University of Alberta official colors
+\usepackage[dvinames]{xcolor}
+\definecolor{UAgreen}{HTML}{007C41}
+\definecolor{UAgold}{HTML}{FFDB05}
 
-$if(address)$
-\address{$address$}
-$endif$
+% Measurements should be taken directly from the guide and need more scrutiny
+% https://www.ualberta.ca/toolkit/visual-identity/stationery/letterhead.html
+\usepackage[includeheadfoot, top=2.25cm,left=2.75cm,bottom=2.25cm,right=2.75cm, headheight=14pt, heightrounded]{geometry}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\hypersetup{unicode=true,
+colorlinks=true,
+            linkcolor=$if(linkcolour)$ $linkcolour$ $else$maroon$endif$,
+            citecolor=$if(citecolour)$ $citecolour$ $else$blue$endif$,
+            urlcolor=$if(urlcolour)$ $urlcolour$ $else$blue$endif$,
+            breaklinks=true, bookmarks=true}
+\urlstyle{same}  % don't use monospace font for urls
+\usepackage[absolute]{textpos}
+\usepackage{ifthen}
+\usepackage{soul}
+\usepackage{fontawesome}
 
+% --- For placement of the horizontal line
+\usepackage{tikz}
+\usetikzlibrary{calc}
 
+% --- A nice serif font (palatino), but not the prescribed nonfree ITC stone
+\usepackage[sc,osf]{mathpazo}
+\linespread{1.05}
+
+% Remove paragraph indentation
+\parindent0pt
+\setlength{\parskip}{0.8\baselineskip}
+\raggedright
+\pagestyle{empty}
+% Ensure consistency in the footer
+% \urlstyle{sf} % potential conflict
+
+% Sender data: from...
+$if(fromname)$ \providecommand\fromname{$fromname$} $endif$
+$if(fromtitle)$ \providecommand\fromtitle{$fromtitle$} $endif$
+$if(fromdegree)$ \providecommand\fromdegree{$fromdegree$} $endif$
+$if(fromaddress)$ \providecommand\fromaddress{$fromaddress$} $endif$
+$if(fromdept)$ \providecommand\fromdept{$fromdept$} $endif$
+$if(fromfaculty)$ \providecommand\fromfaculty{$fromfaculty$} $endif$
+$if(fromtel)$ \providecommand\fromtel{$fromtel$} $endif$
+$if(fromfax)$ \providecommand\fromfax{$fromfax$} $endif$
+$if(fromfax)$ \providecommand\fromfax{$fromfax$} $endif$
+$if(fromemail)$ \providecommand\fromemail{\href{mailto:}{$fromemail$}} $endif$
+$if(fromweb)$ \providecommand\fromweb{\href{https://$fromweb$}{$fromweb$}} $endif$
+$if(signaturefile)$ \providecommand\signaturefile{$signaturefile$} $endif$
+
+% Recipient data: to...
+$if(toname)$ \providecommand\toname{$toname$} $endif$
+$if(toaddress)$ \providecommand\toaddress{$toaddress$} $endif$
+
+% Letter parts:
+$if(opening)$ \providecommand\opening{$opening$} $endif$
+$if(closing)$ \providecommand\closing{$closing$} $endif$
+% \providecommand\logofile{-COLOUR}
+$if(logofile)$ \providecommand\logofile{$logofile$} $endif$
+% \providecommand\enclosure{}
+% $if(enclosure)$ \providecommand\enclosure{$enclosure$} $endif$
+
+% Header and footer
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+
+\renewcommand{\footrulewidth}{0pt}
+\fancyfoot{}
+\fancyfoot[R]{%
+    {\footnotesize\color{UAgreen}\sffamily \thepage\ of \pageref{LastPage}}}
+
+\fancyhead{}
+\fancyhead[L]{%
+    \begin{textblock*}{7cm}[0.3066,0.39](4cm,1.7cm)
+        \includegraphics[width=7cm]{\logofile}
+    \end{textblock*}
+    \begin{textblock*}{15cm}(3.75cm,1.75cm)   % 6.375=8.5 - 1.5 - 0.625
+        \sffamily \scshape
+        \hfill \color{black} \large \fromfaculty
+        \\ \hfill \fromdept
+    \end{textblock*}}
+\renewcommand{\headrulewidth}{1pt}
+
+\AtBeginDocument{
+    % Text lines should be less than 6in long
+
+    \vspace*{3cm}
+
+    \begin{textblock*}{15cm}(3.75cm,3.1cm)   % 6.375=8.5 - 1.5 - 0.625
+        \sffamily
+        \hfill \color{black} \hfill \fromname, \fromdegree \\
+        \hfill \fromaddress \\
+        \hfill \fromemail \\
+        \hfill \fromtel \\
+        \hfill \fromfax \\
+        \hfill \fromweb \\
+    \end{textblock*}
+
+    \date
+    \bigskip
+
+    \toname\ifthenelse{\equal{\toname}{}}{}{\\}
+    \toaddress
+    \bigskip
+
+    \opening\par}
+
+\AtEndDocument{
+    \par\vspace{2ex}
+    \closing,
+
+    \ifthenelse{\equal{\signaturefile}{}}{\bigskip\bigskip}{\includegraphics[width=3cm]{\signaturefile}\\[-0.2\baselineskip]}
+
+    \fromname \\
+    \fromtitle\ifthenelse{\equal{\fromtitle}{}}{}{\\}
+    % \enclosure
+    \label{LastPage}}
+
+\usepackage{lipsum}
 
 \begin{document}
-\begin{letter}{Company name \\ Street\\ City\\ Country}
 % \opening{Dear Sir or Madam:}
-$if(opening)$
-\opening{$opening$}
-$endif$
-
-\vspace{0.75cm}
-
-$body$
-
-\vspace{0.75cm}
-
-% \closing{Yours Faithfully,}
-$if(closing)$
-\closing{$closing$}
-$endif$
 
 
-\ps{P.S. Here goes your ps.}
-\encl{Enclosures.}
-\end{letter}
+%
+% $body$
+
+\lipsum[1-5]
+
+%
+% \fromname\ \\
+% \fromtitle\ \\
+% \fromdegree\ \\
+% \fromaddress\ \\
+% \fromdept\ \\
+% \fromfaculty\ \\
+% \fromtel\ \\
+% \fromfax\ \\
+% \fromemail\ \\
+% \fromweb\ \\
+% \toname\ \\
+% \toaddress\ \\
+
+
 \end{document}

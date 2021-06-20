@@ -1,11 +1,26 @@
 ---
-title:          "Basic Letter"
-author:         "Brian Rusk"
-signature:      "Brian R."
-address:        "my street, \\ my city, \\ my country"
+title:          Basic Letter
+fromname:       Brian V. Rusk
+fromtitle:      associate professor
+fromdegree:     MA
+fromdept:       department of linguistics
+fromfaculty:    faculty of arts
+fromaddress:    "my street, \\ my city, \\ my country"
+fromtel:        555-555-5555
+fromfax:        555-555-5555
+fromemail:      brian.rusk@gmail.com
+fromweb:        brianvrusk.rbind.io
+signaturefile:  BRsig
+toname:         Jane Smith
+toaddress:      "her street, her city, her country"
 opening:        "To whom \\dots"
-closing:        "Yours Nicely,"
+closing:        Best Wishes,
 date:           "`r format(Sys.time(), '%Y %B %d')`"
+fontsize:       11pt
+linkcolour:     blue
+fontawesome:    true
+logofile:       UA-COLOUR
+enclosure:      
 output: 
     pdf_document:
         template: template.tex

@@ -1,27 +1,149 @@
-\documentclass[11pt]{letter}
+\documentclass[11pt,letterpaper,]{article}
 
-\signature{Brian R.}
+% Define University of Alberta official colors
+\usepackage[dvinames]{xcolor}
+\definecolor{UAgreen}{HTML}{007C41}
+\definecolor{UAgold}{HTML}{FFDB05}
 
-\address{my street, ~my city, ~my country}
+% Measurements should be taken directly from the guide and need more scrutiny
+% https://www.ualberta.ca/toolkit/visual-identity/stationery/letterhead.html
+\usepackage[includeheadfoot, top=2.25cm,left=2.75cm,bottom=2.25cm,right=2.75cm, headheight=14pt, heightrounded]{geometry}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\hypersetup{unicode=true,
+colorlinks=true,
+            linkcolor= blue ,
+            citecolor=blue,
+            urlcolor=blue,
+            breaklinks=true, bookmarks=true}
+\urlstyle{same}  % don't use monospace font for urls
+\usepackage[absolute]{textpos}
+\usepackage{ifthen}
+\usepackage{soul}
+\usepackage{fontawesome}
 
+% --- For placement of the horizontal line
+\usepackage{tikz}
+\usetikzlibrary{calc}
 
+% --- A nice serif font (palatino), but not the prescribed nonfree ITC stone
+\usepackage[sc,osf]{mathpazo}
+\linespread{1.05}
+
+% Remove paragraph indentation
+\parindent0pt
+\setlength{\parskip}{0.8\baselineskip}
+\raggedright
+\pagestyle{empty}
+% Ensure consistency in the footer
+% \urlstyle{sf} % potential conflict
+
+% Sender data: from...
+ \providecommand\fromname{Brian V. Rusk} 
+ \providecommand\fromtitle{associate professor} 
+ \providecommand\fromdegree{MA} 
+ \providecommand\fromaddress{my street, ~my city, ~my country} 
+ \providecommand\fromdept{department of linguistics} 
+ \providecommand\fromfaculty{faculty of arts} 
+ \providecommand\fromtel{555-555-5555} 
+ \providecommand\fromfax{555-555-5555} 
+ \providecommand\fromfax{555-555-5555} 
+ \providecommand\fromemail{\href{mailto:}{\href{mailto:brian.rusk@gmail.com}{\nolinkurl{brian.rusk@gmail.com}}}} 
+ \providecommand\fromweb{\href{https://brianvrusk.rbind.io}{brianvrusk.rbind.io}} 
+ \providecommand\signaturefile{BRsig} 
+
+% Recipient data: to...
+ \providecommand\toname{Jane Smith} 
+ \providecommand\toaddress{her street, her city, her country} 
+
+% Letter parts:
+ \providecommand\opening{To whom \dots} 
+ \providecommand\closing{Best Wishes,} 
+% \providecommand\logofile{-COLOUR}
+ \providecommand\logofile{UA-COLOUR} 
+% \providecommand\enclosure{}
+% 
+
+% Header and footer
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+
+\renewcommand{\footrulewidth}{0pt}
+\fancyfoot{}
+\fancyfoot[R]{%
+    {\footnotesize\color{UAgreen}\sffamily \thepage\ of \pageref{LastPage}}}
+
+\fancyhead{}
+\fancyhead[L]{%
+    \begin{textblock*}{7cm}[0.3066,0.39](4cm,1.7cm)
+        \includegraphics[width=7cm]{\logofile}
+    \end{textblock*}
+    \begin{textblock*}{15cm}(3.75cm,1.75cm)   % 6.375=8.5 - 1.5 - 0.625
+        \sffamily \scshape
+        \hfill \color{black} \large \fromfaculty
+        \\ \hfill \fromdept
+    \end{textblock*}}
+\renewcommand{\headrulewidth}{1pt}
+
+\AtBeginDocument{
+    % Text lines should be less than 6in long
+
+    \vspace*{3cm}
+
+    \begin{textblock*}{15cm}(3.75cm,3.1cm)   % 6.375=8.5 - 1.5 - 0.625
+        \sffamily
+        \hfill \color{black} \hfill \fromname, \fromdegree \\
+        \hfill \fromaddress \\
+        \hfill \fromemail \\
+        \hfill \fromtel \\
+        \hfill \fromfax \\
+        \hfill \fromweb \\
+    \end{textblock*}
+
+    \date
+    \bigskip
+
+    \toname\ifthenelse{\equal{\toname}{}}{}{\\}
+    \toaddress
+    \bigskip
+
+    \opening\par}
+
+\AtEndDocument{
+    \par\vspace{2ex}
+    \closing,
+
+    \ifthenelse{\equal{\signaturefile}{}}{\bigskip\bigskip}{\includegraphics[width=3cm]{\signaturefile}\\[-0.2\baselineskip]}
+
+    \fromname \\
+    \fromtitle\ifthenelse{\equal{\fromtitle}{}}{}{\\}
+    % \enclosure
+    \label{LastPage}}
+
+\usepackage{lipsum}
 
 \begin{document}
-\begin{letter}{Company name \\ Street\\ City\\ Country}
 % \opening{Dear Sir or Madam:}
-\opening{To whom \dots}
-
-\vspace{0.75cm}
-
-Hello Hello Hello Hello
-
-\vspace{0.75cm}
-
-% \closing{Yours Faithfully,}
-\closing{Yours Nicely,}
 
 
-\ps{P.S. Here goes your ps.}
-\encl{Enclosures.}
-\end{letter}
+%
+% Hello Hello Hello Hello
+
+\lipsum[1-5]
+
+%
+% \fromname\ \\
+% \fromtitle\ \\
+% \fromdegree\ \\
+% \fromaddress\ \\
+% \fromdept\ \\
+% \fromfaculty\ \\
+% \fromtel\ \\
+% \fromfax\ \\
+% \fromemail\ \\
+% \fromweb\ \\
+% \toname\ \\
+% \toaddress\ \\
+
+
 \end{document}
