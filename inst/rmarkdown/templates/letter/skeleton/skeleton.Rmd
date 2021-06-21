@@ -5,16 +5,22 @@ fromtitle:      associate professor
 fromdegree:     MA
 fromdept:       department of linguistics
 fromfaculty:    faculty of arts
-fromaddress:    "my street, \\ my city, \\ my country"
+# Fill in addresses with the following syntax
+fromaddress:    | 
+    3-27 Assiniboia Hall, \
+    \hfill Edmonton, AB, Canada T6G 2E7
 fromtel:        555-555-5555
 fromfax:        555-555-5555
 fromemail:      brian.rusk@gmail.com
 fromweb:        brianvrusk.rbind.io
-signaturefile:  BRsig
+signaturefile:  signatureFile
 toname:         Jane Smith
-toaddress:      "her street, her city, her country"
+toaddress:      |
+    her street, \
+    her city, \
+    her country
 opening:        "To whom \\dots"
-closing:        Best Wishes,
+closing:        Best Wishes
 date:           "`r format(Sys.time(), '%Y %B %d')`"
 fontsize:       11pt
 linkcolour:     blue

@@ -39,17 +39,22 @@ colorlinks=true,
 % \urlstyle{sf} % potential conflict
 
 % Sender data: from...
+% I can't think of a better way to do this: Choose to supply an icon
+% \ifx\true\fabcond $if(fromtel)$ \providecommand\fromtel{\faPhone \hspace{1 mm} $fromtel$} $endif$ \else $if(fromtel)$ \providecommand\fromtel{$fromtel$} $endif$ \fi
+
+\def\true{true} \def\fabcond{$fontawesome$} \def\false{false}
+
 $if(fromname)$ \providecommand\fromname{$fromname$} $endif$
 $if(fromtitle)$ \providecommand\fromtitle{$fromtitle$} $endif$
 $if(fromdegree)$ \providecommand\fromdegree{$fromdegree$} $endif$
 $if(fromaddress)$ \providecommand\fromaddress{$fromaddress$} $endif$
 $if(fromdept)$ \providecommand\fromdept{$fromdept$} $endif$
 $if(fromfaculty)$ \providecommand\fromfaculty{$fromfaculty$} $endif$
-$if(fromtel)$ \providecommand\fromtel{$fromtel$} $endif$
-$if(fromfax)$ \providecommand\fromfax{$fromfax$} $endif$
-$if(fromfax)$ \providecommand\fromfax{$fromfax$} $endif$
-$if(fromemail)$ \providecommand\fromemail{\href{mailto:}{$fromemail$}} $endif$
-$if(fromweb)$ \providecommand\fromweb{\href{https://$fromweb$}{$fromweb$}} $endif$
+\ifx\true\fabcond $if(fromtel)$ \providecommand\fromtel{\faPhone \hspace{1 mm} $fromtel$} $endif$
+\ifx\true\fabcond $if(fromfax)$ \providecommand\fromfax{\faFax \hspace{1 mm} $fromfax$} $endif$
+% $if(fromfax)$ \providecommand\fromfax{$fromfax$} $endif$
+\ifx\true\fabcond $if(fromemail)$ \providecommand\fromemail{\faEnvelopeO \hspace{1 mm} \href{mailto:}{$fromemail$}} $endif$
+\ifx\true\fabcond $if(fromweb)$ \providecommand\fromweb{\faGlobe \hspace{1 mm} \href{https://$fromweb$}{$fromweb$}} $endif$
 $if(signaturefile)$ \providecommand\signaturefile{$signaturefile$} $endif$
 
 % Recipient data: to...
@@ -71,7 +76,11 @@ $if(logofile)$ \providecommand\logofile{$logofile$} $endif$
 \renewcommand{\footrulewidth}{0pt}
 \fancyfoot{}
 \fancyfoot[R]{%
+    \textcolor{UAgreen}{\rule{\textwidth}{1.5pt}} \\
+    % \rule[10pt]{17cm}{1.5pt} \\
     {\footnotesize\color{UAgreen}\sffamily \thepage\ of \pageref{LastPage}}}
+
+    %\hrule{} % https://tex.stackexchange.com/questions/371286/draw-a-horizontal-line-in-latex
 
 \fancyhead{}
 \fancyhead[L]{%
@@ -79,9 +88,9 @@ $if(logofile)$ \providecommand\logofile{$logofile$} $endif$
         \includegraphics[width=7cm]{\logofile}
     \end{textblock*}
     \begin{textblock*}{15cm}(3.75cm,1.75cm)   % 6.375=8.5 - 1.5 - 0.625
-        \sffamily \scshape
-        \hfill \color{black} \large \fromfaculty
-        \\ \hfill \fromdept
+        \sffamily
+        \hfill \color{black} \large \MakeUppercase{\fromfaculty}
+        \\ \hfill \MakeUppercase{\fromdept}
     \end{textblock*}}
 \renewcommand{\headrulewidth}{1pt}
 
@@ -94,9 +103,9 @@ $if(logofile)$ \providecommand\logofile{$logofile$} $endif$
         \sffamily
         \hfill \color{black} \hfill \fromname, \fromdegree \\
         \hfill \fromaddress \\
-        \hfill \fromemail \\
         \hfill \fromtel \\
         \hfill \fromfax \\
+        \hfill \fromemail \\
         \hfill \fromweb \\
     \end{textblock*}
 

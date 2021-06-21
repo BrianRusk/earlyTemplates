@@ -39,26 +39,34 @@ colorlinks=true,
 % \urlstyle{sf} % potential conflict
 
 % Sender data: from...
+% I can't think of a better way to do this: Choose to supply an icon
+% \ifx\true\fabcond  \providecommand\fromtel{\faPhone \hspace{1 mm} 555-555-5555}  \else  \providecommand\fromtel{555-555-5555}  \fi
+
+\def\true{true} \def\fabcond{true} \def\false{false}
+
  \providecommand\fromname{Brian V. Rusk} 
  \providecommand\fromtitle{associate professor} 
  \providecommand\fromdegree{MA} 
- \providecommand\fromaddress{my street, ~my city, ~my country} 
+ \providecommand\fromaddress{3-27 Assiniboia Hall,\\
+\hfill Edmonton, AB, Canada T6G 2E7} 
  \providecommand\fromdept{department of linguistics} 
  \providecommand\fromfaculty{faculty of arts} 
- \providecommand\fromtel{555-555-5555} 
- \providecommand\fromfax{555-555-5555} 
- \providecommand\fromfax{555-555-5555} 
- \providecommand\fromemail{\href{mailto:}{\href{mailto:brian.rusk@gmail.com}{\nolinkurl{brian.rusk@gmail.com}}}} 
- \providecommand\fromweb{\href{https://brianvrusk.rbind.io}{brianvrusk.rbind.io}} 
- \providecommand\signaturefile{BRsig} 
+\ifx\true\fabcond  \providecommand\fromtel{\faPhone \hspace{1 mm} 555-555-5555} 
+\ifx\true\fabcond  \providecommand\fromfax{\faFax \hspace{1 mm} 555-555-5555} 
+%  \providecommand\fromfax{555-555-5555} 
+\ifx\true\fabcond  \providecommand\fromemail{\faEnvelopeO \hspace{1 mm} \href{mailto:}{\href{mailto:brian.rusk@gmail.com}{\nolinkurl{brian.rusk@gmail.com}}}} 
+\ifx\true\fabcond  \providecommand\fromweb{\faGlobe \hspace{1 mm} \href{https://brianvrusk.rbind.io}{brianvrusk.rbind.io}} 
+ \providecommand\signaturefile{signatureFile} 
 
 % Recipient data: to...
  \providecommand\toname{Jane Smith} 
- \providecommand\toaddress{her street, her city, her country} 
+ \providecommand\toaddress{her street,\\
+her city,\\
+her country} 
 
 % Letter parts:
  \providecommand\opening{To whom \dots} 
- \providecommand\closing{Best Wishes,} 
+ \providecommand\closing{Best Wishes} 
 % \providecommand\logofile{-COLOUR}
  \providecommand\logofile{UA-COLOUR} 
 % \providecommand\enclosure{}
@@ -71,7 +79,11 @@ colorlinks=true,
 \renewcommand{\footrulewidth}{0pt}
 \fancyfoot{}
 \fancyfoot[R]{%
+    \textcolor{UAgreen}{\rule{\textwidth}{1.5pt}} \\
+    % \rule[10pt]{17cm}{1.5pt} \\
     {\footnotesize\color{UAgreen}\sffamily \thepage\ of \pageref{LastPage}}}
+
+    %\hrule{} % https://tex.stackexchange.com/questions/371286/draw-a-horizontal-line-in-latex
 
 \fancyhead{}
 \fancyhead[L]{%
@@ -79,9 +91,9 @@ colorlinks=true,
         \includegraphics[width=7cm]{\logofile}
     \end{textblock*}
     \begin{textblock*}{15cm}(3.75cm,1.75cm)   % 6.375=8.5 - 1.5 - 0.625
-        \sffamily \scshape
-        \hfill \color{black} \large \fromfaculty
-        \\ \hfill \fromdept
+        \sffamily
+        \hfill \color{black} \large \MakeUppercase{\fromfaculty}
+        \\ \hfill \MakeUppercase{\fromdept}
     \end{textblock*}}
 \renewcommand{\headrulewidth}{1pt}
 
@@ -94,9 +106,9 @@ colorlinks=true,
         \sffamily
         \hfill \color{black} \hfill \fromname, \fromdegree \\
         \hfill \fromaddress \\
-        \hfill \fromemail \\
         \hfill \fromtel \\
         \hfill \fromfax \\
+        \hfill \fromemail \\
         \hfill \fromweb \\
     \end{textblock*}
 
