@@ -7,7 +7,7 @@
 
 % Measurements should be taken directly from the guide and need more scrutiny
 % https://www.ualberta.ca/toolkit/visual-identity/stationery/letterhead.html
-\usepackage[includeheadfoot, top=2.25cm,left=2.75cm,bottom=2.25cm,right=2.75cm, headheight=14pt, heightrounded]{geometry}
+\usepackage[includehead, top=1.55cm,left=2.75cm,bottom=2.25cm,right=2.75cm, footskip=24pt, headsep=0pt, headheight=48pt, heightrounded]{geometry}
 \usepackage{graphicx}
 \usepackage{hyperref}
 \hypersetup{unicode=true,
@@ -50,11 +50,10 @@ $if(fromdegree)$ \providecommand\fromdegree{$fromdegree$} $endif$
 $if(fromaddress)$ \providecommand\fromaddress{$fromaddress$} $endif$
 $if(fromdept)$ \providecommand\fromdept{$fromdept$} $endif$
 $if(fromfaculty)$ \providecommand\fromfaculty{$fromfaculty$} $endif$
-\ifx\true\fabcond $if(fromtel)$ \providecommand\fromtel{\faPhone \hspace{1 mm} $fromtel$} $endif$
-\ifx\true\fabcond $if(fromfax)$ \providecommand\fromfax{\faFax \hspace{1 mm} $fromfax$} $endif$
-% $if(fromfax)$ \providecommand\fromfax{$fromfax$} $endif$
-\ifx\true\fabcond $if(fromemail)$ \providecommand\fromemail{\faEnvelopeO \hspace{1 mm} \href{mailto:}{$fromemail$}} $endif$
-\ifx\true\fabcond $if(fromweb)$ \providecommand\fromweb{\faGlobe \hspace{1 mm} \href{https://$fromweb$}{$fromweb$}} $endif$
+\ifx\true\fabcond $if(fromtel)$ \providecommand\fromtel{\faPhone \hspace{1 mm} $fromtel$} $endif$ \else $if(fromtel)$ \providecommand\fromtel{$fromtel$} $endif$ \fi
+\ifx\true\fabcond $if(fromfax)$ \providecommand\fromfax{\faFax \hspace{1 mm} $fromfax$} $endif$ \else $if(fromfax)$ \providecommand\fromfax{$fromfax$} $endif$ \fi
+\ifx\true\fabcond $if(fromemail)$ \providecommand\fromemail{\faEnvelopeO \hspace{1 mm} \href{mailto:}{$fromemail$}} $endif$ \else $if(fromemail)$ \providecommand\fromemail{$fromemail$} $endif$ \fi
+\ifx\true\fabcond $if(fromweb)$ \providecommand\fromweb{\faGlobe \hspace{1 mm} \href{https://$fromweb$}{$fromweb$}} $endif$ \else $if(fromweb)$ \providecommand\fromweb{\href{https://$fromweb$}{$fromweb$}} $endif$ \fi
 $if(signaturefile)$ \providecommand\signaturefile{$signaturefile$} $endif$
 
 % Recipient data: to...
@@ -76,14 +75,14 @@ $if(logofile)$ \providecommand\logofile{$logofile$} $endif$
 \renewcommand{\footrulewidth}{0pt}
 \fancyfoot{}
 \fancyfoot[R]{%
-    \textcolor{UAgreen}{\rule{\textwidth}{1.5pt}} \\
-    % \rule[10pt]{17cm}{1.5pt} \\
-    {\footnotesize\color{UAgreen}\sffamily \thepage\ of \pageref{LastPage}}}
+    \textcolor{UAgreen}{\rule[10pt]{\textwidth}{1.5pt}} \\
+    {\footnotesize\color{UAgreen}\sffamily \thepage\ of \pageref*{LastPage}}}
 
     %\hrule{} % https://tex.stackexchange.com/questions/371286/draw-a-horizontal-line-in-latex
 
 \fancyhead{}
 \fancyhead[L]{%
+    \textcolor{UAgreen}{\rule[-24pt]{\textwidth}{1.5pt}} \\
     \begin{textblock*}{7cm}[0.3066,0.39](4cm,1.7cm)
         \includegraphics[width=7cm]{\logofile}
     \end{textblock*}
@@ -92,7 +91,7 @@ $if(logofile)$ \providecommand\logofile{$logofile$} $endif$
         \hfill \color{black} \large \MakeUppercase{\fromfaculty}
         \\ \hfill \MakeUppercase{\fromdept}
     \end{textblock*}}
-\renewcommand{\headrulewidth}{1pt}
+\renewcommand{\headrulewidth}{0pt}
 
 \AtBeginDocument{
     % Text lines should be less than 6in long
@@ -129,30 +128,12 @@ $if(logofile)$ \providecommand\logofile{$logofile$} $endif$
     % \enclosure
     \label{LastPage}}
 
-\usepackage{lipsum}
+% \usepackage{lipsum}
 
 \begin{document}
-% \opening{Dear Sir or Madam:}
 
+$body$
 
-%
-% $body$
-
-\lipsum[1-5]
-
-%
-% \fromname\ \\
-% \fromtitle\ \\
-% \fromdegree\ \\
-% \fromaddress\ \\
-% \fromdept\ \\
-% \fromfaculty\ \\
-% \fromtel\ \\
-% \fromfax\ \\
-% \fromemail\ \\
-% \fromweb\ \\
-% \toname\ \\
-% \toaddress\ \\
-
+% \lipsum[1-5]
 
 \end{document}
