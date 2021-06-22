@@ -124,7 +124,7 @@ $if(logofile)$ \providecommand\logofile{$logofile$} $endif$
     \ifthenelse{\equal{\signaturefile}{}}{\bigskip\bigskip}{\includegraphics[width=3cm]{\signaturefile}\\[-0.2\baselineskip]}
 
     \fromname \\
-    \fromtitle\ifthenelse{\equal{\fromtitle}{}}{}{\\}
+    $if(fromtitle)$ \fromtitle\ifthenelse{\equal{\fromtitle}{}}{}{\\} $endif$
     % \enclosure
     \label{LastPage}}
 
