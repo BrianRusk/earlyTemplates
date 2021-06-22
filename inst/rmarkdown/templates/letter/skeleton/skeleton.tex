@@ -46,15 +46,15 @@ colorlinks=true,
 
  \providecommand\fromname{Brian V. Rusk} 
  \providecommand\fromtitle{associate professor} 
- \providecommand\fromdegree{MA} 
+
  \providecommand\fromaddress{3-27 Assiniboia Hall,\\
 \hfill Edmonton, AB, Canada T6G 2E7} 
  \providecommand\fromdept{department of linguistics} 
  \providecommand\fromfaculty{faculty of arts} 
 \ifx\true\fabcond  \providecommand\fromtel{\faPhone \hspace{1 mm} 555-555-5555}  \else  \providecommand\fromtel{555-555-5555}  \fi
-\ifx\true\fabcond  \providecommand\fromfax{\faFax \hspace{1 mm} 555-555-5555}  \else  \providecommand\fromfax{555-555-5555}  \fi
+\ifx\true\fabcond  \else  \fi
 \ifx\true\fabcond  \providecommand\fromemail{\faEnvelopeO \hspace{1 mm} \href{mailto:}{\href{mailto:brian.rusk@gmail.com}{\nolinkurl{brian.rusk@gmail.com}}}}  \else  \providecommand\fromemail{\href{mailto:brian.rusk@gmail.com}{\nolinkurl{brian.rusk@gmail.com}}}  \fi
-\ifx\true\fabcond  \providecommand\fromweb{\faGlobe \hspace{1 mm} \href{https://brianvrusk.rbind.io}{brianvrusk.rbind.io}}  \else  \providecommand\fromweb{\href{https://brianvrusk.rbind.io}{brianvrusk.rbind.io}}  \fi
+\ifx\true\fabcond  \else  \fi
  \providecommand\signaturefile{signatureFile} 
 
 % Recipient data: to...
@@ -103,12 +103,12 @@ her country}
 
     \begin{textblock*}{15cm}(3.75cm,3.1cm)   % 6.375=8.5 - 1.5 - 0.625
         \sffamily
-        \hfill \color{black} \hfill \fromname, \fromdegree \\
-        \hfill \fromaddress \\
-        \hfill \fromtel \\
-        \hfill \fromfax \\
-        \hfill \fromemail \\
-        \hfill \fromweb \\
+        \hfill \color{black} \hfill \fromname,  \\
+        \hfill \fromaddress \\ 
+        \hfill \fromtel \\ 
+        
+        \hfill \fromemail \\ 
+        
     \end{textblock*}
 
     \date
@@ -132,11 +132,13 @@ her country}
     \label{LastPage}}
 
 % \usepackage{lipsum}
+% \usepackage{layout}
 
 \begin{document}
 
 -- Write your letter here --
 
+% \layout
 % \lipsum[1-5]
 
 \end{document}

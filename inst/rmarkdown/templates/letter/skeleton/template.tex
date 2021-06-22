@@ -100,12 +100,12 @@ $if(logofile)$ \providecommand\logofile{$logofile$} $endif$
 
     \begin{textblock*}{15cm}(3.75cm,3.1cm)   % 6.375=8.5 - 1.5 - 0.625
         \sffamily
-        \hfill \color{black} \hfill \fromname, \fromdegree \\
-        \hfill \fromaddress \\
-        \hfill \fromtel \\
-        \hfill \fromfax \\
-        \hfill \fromemail \\
-        \hfill \fromweb \\
+        \hfill \color{black} \hfill \fromname, $if(fromdegree)$\fromdegree $endif$ \\
+        $if(fromaddress)$\hfill \fromaddress \\ $endif$
+        $if(fromtel)$\hfill \fromtel \\ $endif$
+        $if(fromfax)$ \hfill \fromfax \\ $endif$
+        $if(fromemail)$\hfill \fromemail \\ $endif$
+        $if(fromweb)$\hfill \fromweb \\ $endif$
     \end{textblock*}
 
     \date
@@ -129,11 +129,13 @@ $if(logofile)$ \providecommand\logofile{$logofile$} $endif$
     \label{LastPage}}
 
 % \usepackage{lipsum}
+% \usepackage{layout}
 
 \begin{document}
 
 $body$
 
+% \layout
 % \lipsum[1-5]
 
 \end{document}
